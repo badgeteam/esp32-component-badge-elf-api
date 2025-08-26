@@ -1,0 +1,13 @@
+idf_component_register(
+	SRCS
+		"src/display.c"
+		"src/err.c"
+	PRIV_INCLUDE_DIRS
+		"priv_include"
+	INCLUDE_DIRS
+		"include"
+	REQUIRES
+		"badge-bsp"
+		"freertos"
+		"pax-gfx"
+)
