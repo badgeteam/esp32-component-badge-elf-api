@@ -1,7 +1,9 @@
 idf_component_register(
 	SRCS
+		"src/device.c"
 		"src/display.c"
 		"src/err.c"
+		"src/input.c"
 	PRIV_INCLUDE_DIRS
 		"priv_include"
 	INCLUDE_DIRS

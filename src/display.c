@@ -16,6 +16,16 @@ uint8_t*   asp_disp_fb      = NULL;
 // PAX buffer returned by `asp_disp_get_pax_buf`.
 pax_buf_t* asp_disp_pax_buf = NULL;
 
+// Set display brightness.
+asp_err_t asp_disp_set_brightness(uint8_t percent) {
+    return asp_esp_err_conv(bsp_display_set_backlight_brightness(percent));
+}
+
+// Get current display brightness.
+asp_err_t asp_disp_get_brightness(uint8_t* percent_out) {
+    return asp_esp_err_conv(bsp_display_get_backlight_brightness(percent_out));
+}
+
 // Get display parameters of the main display.
 asp_err_t asp_disp_get_params(asp_disp_params_t* params_out) {
     if (!params_out) {

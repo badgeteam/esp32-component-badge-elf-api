@@ -49,6 +49,11 @@ typedef struct {
     bool                little_endian;
 } asp_disp_params_t;
 
+// Set display brightness.
+asp_err_t asp_disp_set_brightness(uint8_t percent);
+// Get current display brightness.
+asp_err_t asp_disp_get_brightness(uint8_t* percent_out);
+
 // Get display parameters of the main display.
 asp_err_t asp_disp_get_params(asp_disp_params_t* params_out);
 // Get existing framebuffer of the main display.
@@ -59,6 +64,7 @@ asp_err_t asp_disp_get_fb(uint8_t** fb_out);
 asp_err_t asp_disp_get_pax_buf(pax_buf_t** buf_out);
 // Initialize a PAX buffer that matches the main display's format.
 asp_err_t asp_disp_init_pax_buf(pax_buf_t* buf);
+
 // Write the data in `fb` to the entirety of the main display.
 // See the `asp_disp_params_t` produced by `asp_disp_get_params` for the buffer format.
 asp_err_t asp_disp_write(void const* fb);
