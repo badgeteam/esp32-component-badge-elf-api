@@ -1,0 +1,3 @@
+dependencies:
+  badgeteam/badge-bsp: ">=0.3.2"
+  robotman2412/pax-gfx: "^1.1.2"
