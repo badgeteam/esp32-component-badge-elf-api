@@ -1,5 +1,6 @@
 idf_component_register(
 	SRCS
+		"src/audio.c"
 		"src/device.c"
 		"src/display.c"
 		"src/err.c"
