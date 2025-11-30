@@ -1,3 +1,4 @@
 dependencies:
   badgeteam/badge-bsp: ">=0.3.2"
   robotman2412/pax-gfx: ">=2.0.1"
+  robotman2412/pax-codecs: ">=1.0.1"
