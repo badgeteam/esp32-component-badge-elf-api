@@ -5,6 +5,7 @@ idf_component_register(
 		"src/display.c"
 		"src/err.c"
 		"src/input.c"
+		"src/power.c"
 	PRIV_INCLUDE_DIRS
 		"priv_include"
 	INCLUDE_DIRS
