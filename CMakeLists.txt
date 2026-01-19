@@ -4,7 +4,10 @@ idf_component_register(
 		"src/device.c"
 		"src/display.c"
 		"src/err.c"
+		"src/http.c"
 		"src/input.c"
+		"src/led.c"
+		"src/log.c"
 		"src/power.c"
 	PRIV_INCLUDE_DIRS
 		"priv_include"
@@ -12,6 +15,8 @@ idf_component_register(
 		"include"
 	REQUIRES
 		"badge-bsp"
+		"esp_http_client"
+		"esp_netif"
 		"freertos"
 		"pax-gfx"
 )
