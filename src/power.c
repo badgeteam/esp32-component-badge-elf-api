@@ -1,6 +1,5 @@
-
 // SPDX-License-Identifier: MIT
-// SPDX-CopyRightText: 2025 Badge.Team
+// SPDX-CopyRightText: 2026 Rene Schickbauer
 
 #include "asp/power.h"
 #include "bsp/power.h"

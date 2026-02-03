@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// SPDX-CopyrightText: 2025 Julian Scheffers, Rene Schickbauer
+// SPDX-CopyrightText: 2026 Rene Schickbauer
 
 #include "asp/http.h"
 #include <string.h>
