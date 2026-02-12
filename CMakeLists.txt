@@ -5,6 +5,7 @@ idf_component_register(
 		"src/display.c"
 		"src/err.c"
 		"src/http.c"
+		"src/i2c.c"
 		"src/input.c"
 		"src/led.c"
 		"src/log.c"
