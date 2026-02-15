@@ -58,13 +58,13 @@ asp_err_t asp_power_set_charging(bool disable, uint16_t current_ma) {
     return asp_esp_err_conv(bsp_power_configure_charging(disable, current_ma));
 }
 
-asp_err_t asp_power_get_usb_boost(bool* out_enabled) {
+asp_err_t asp_power_get_usb_host_boost_enabled(bool* out_enabled) {
     if (!out_enabled) {
         return ASP_ERR_PARAM;
     }
     return asp_esp_err_conv(bsp_power_get_usb_host_boost_enabled(out_enabled));
 }
 
-asp_err_t asp_power_set_usb_boost(bool enable) {
+asp_err_t asp_power_set_usb_host_boost_enabled(bool enable) {
     return asp_esp_err_conv(bsp_power_set_usb_host_boost_enabled(enable));
 }

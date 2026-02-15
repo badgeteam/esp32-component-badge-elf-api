@@ -3,32 +3,25 @@
 
 #include "asp/log.h"
 #include <stdarg.h>
-#include <stdio.h>
 #include "esp_log.h"
 
 void asp_log_info(const char* tag, const char* fmt, ...) {
-    char buf[256];
     va_list args;
     va_start(args, fmt);
-    vsnprintf(buf, sizeof(buf), fmt, args);
+    esp_log_writev(ESP_LOG_INFO, tag, fmt, args);
     va_end(args);
-    ESP_LOGI(tag, "%s", buf);
 }
 
 void asp_log_warn(const char* tag, const char* fmt, ...) {
-    char buf[256];
     va_list args;
     va_start(args, fmt);
-    vsnprintf(buf, sizeof(buf), fmt, args);
+    esp_log_writev(ESP_LOG_WARN, tag, fmt, args);
     va_end(args);
-    ESP_LOGW(tag, "%s", buf);
 }
 
 void asp_log_error(const char* tag, const char* fmt, ...) {
-    char buf[256];
     va_list args;
     va_start(args, fmt);
-    vsnprintf(buf, sizeof(buf), fmt, args);
+    esp_log_writev(ESP_LOG_ERROR, tag, fmt, args);
     va_end(args);
-    ESP_LOGE(tag, "%s", buf);
 }

@@ -55,9 +55,9 @@ asp_err_t asp_power_set_charging(bool disable, uint16_t current_ma);
 /// @brief Get USB host boost status
 /// @param[out] out_enabled Pointer to receive enabled state
 /// @return Error code
-asp_err_t asp_power_get_usb_boost(bool* out_enabled);
+asp_err_t asp_power_get_usb_host_boost_enabled(bool* out_enabled);
 
 /// @brief Set USB host boost
 /// @param enable Set to true to enable USB host boost
 /// @return Error code
-asp_err_t asp_power_set_usb_boost(bool enable);
+asp_err_t asp_power_set_usb_host_boost_enabled(bool enable);
