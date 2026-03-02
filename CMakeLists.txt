@@ -8,6 +8,7 @@ idf_component_register(
 		"src/input.c"
 		"src/led.c"
 		"src/log.c"
+		"src/orientation.c"
 		"src/power.c"
 	PRIV_INCLUDE_DIRS
 		"priv_include"
