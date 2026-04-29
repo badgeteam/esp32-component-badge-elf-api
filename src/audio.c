@@ -9,6 +9,9 @@
 #include "driver/i2s_common.h"
 #include "driver/i2s_types.h"
 #include "err.h"
+#include "sdkconfig.h"
+
+#ifdef CONFIG_ENABLE_AUDIOMIXER
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -18,6 +21,7 @@
 extern size_t audio_mixer_write(TaskHandle_t task, const void* samples, size_t size_bytes, int64_t timeout_ms);
 extern bool   audio_mixer_start(TaskHandle_t task);
 extern bool   audio_mixer_stop(TaskHandle_t task);
+#endif
 
 // Set audio sampling rate.
 asp_err_t asp_audio_set_rate(uint32_t rate_hz) {
@@ -39,6 +43,8 @@ asp_err_t asp_audio_set_amplifier(bool enabled) {
     return asp_esp_err_conv(bsp_audio_set_amplifier(enabled));
 }
 
+#ifdef CONFIG_ENABLE_AUDIOMIXER
+
 // Stop this plugin's audio stream. Pauses mixing for the stream and discards
 // any samples still queued. Other plugins are unaffected.
 asp_err_t asp_audio_stop() {
@@ -56,3 +62,37 @@ asp_err_t asp_audio_write(void* samples, size_t samples_size, int64_t timeout_ms
     size_t sent = audio_mixer_write(xTaskGetCurrentTaskHandle(), samples, samples_size, timeout_ms);
     return (sent == samples_size) ? ASP_OK : ASP_ERR_FAIL;
 }
+
+#else  // !CONFIG_ENABLE_AUDIOMIXER
+
+// Stop the audio stream.
+asp_err_t asp_audio_stop() {
+    i2s_chan_handle_t handle;
+    ASP_RETURN_ON_ERR(asp_esp_err_conv(bsp_audio_get_i2s_handle(&handle)));
+    if (!handle) {
+        return ASP_ERR_FAIL;
+    }
+    return i2s_channel_disable(handle);
+}
+
+// Start the audio stream.
+asp_err_t asp_audio_start() {
+    i2s_chan_handle_t handle;
+    ASP_RETURN_ON_ERR(asp_esp_err_conv(bsp_audio_get_i2s_handle(&handle)));
+    if (!handle) {
+        return ASP_ERR_FAIL;
+    }
+    return i2s_channel_enable(handle);
+}
+
+// Write audio samples.
+asp_err_t asp_audio_write(void* samples, size_t samples_size, int64_t timeout_ms) {
+    i2s_chan_handle_t handle;
+    ASP_RETURN_ON_ERR(asp_esp_err_conv(bsp_audio_get_i2s_handle(&handle)));
+    if (!handle) {
+        return ASP_ERR_FAIL;
+    }
+    return asp_esp_err_conv(i2s_channel_write(handle, samples, samples_size, NULL, timeout_ms));
+}
+
+#endif  // CONFIG_ENABLE_AUDIOMIXER
