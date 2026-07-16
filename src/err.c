@@ -27,7 +27,7 @@ char const* asp_err_id(asp_err_t ec) {
     }
 }
 
-// Get strinf description of an `asp_err_t`.
+// Get string description of an `asp_err_t`.
 char const* asp_err_desc(asp_err_t ec) {
     if (ec < 0 || ec > sizeof(asp_err_desc_table) / sizeof(char const* const)) {
         return NULL;
